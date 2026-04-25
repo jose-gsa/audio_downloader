@@ -13,7 +13,9 @@ def download_audio(url: str, output_path: str):
             }
         ],
         "outtmpl": f"{output_path}/%(title)s.%(ext)s",  # define the final name
-        "quiet": False,  # Show the progress (debug)
+        "quiet": False,
+        # 'noplaylist': True, Uncomment if you to download only 1 music
+        "extractor_args": {"youtube": ["player_client=android"]},
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
