@@ -1,76 +1,76 @@
-YouTube Audio Downloader
+# YouTube Audio Downloader
 
 A robust Command Line Interface (CLI) tool built with Python to download and convert YouTube videos to high-quality MP3 files. It is specifically designed to bypass modern bot detection (Sign-in/Signature errors) by utilizing the Android API spoofing technique.
-Features
 
-    High Quality: Automatically extracts the best available audio and converts it to 192kbps MP3.
+---
 
-    Smart Organization: Automatically creates subdirectories based on the Channel Name (Uploader).
+## Features
 
-    Bot-Detection Bypass: Uses the android player client to avoid "Signature solving" and "Sign-in to confirm you're not a bot" errors.
+- **High Quality:** Automatically extracts the best available audio and converts it to 192kbps MP3.
+- **Bot-Detection Bypass:** Uses the `android` player client to avoid "Signature solving" and "Sign-in to confirm you're not a bot" errors.
+- **Cookie Support:** Optionally uses cookies from your local browser (Firefox) to maintain session integrity.
 
-    Cookie Support: Optionally uses cookies from your local browser (Firefox) to maintain session integrity.
+---
 
-Prerequisites
+## Prerequisites
 
 Before running the application, ensure you have the following installed:
 
-    Python 3.12+ (Recommended for stability).
+- **Python 3.12+** (Recommended for stability).
+- **FFmpeg:** Required for audio conversion.
+  - *Arch Linux:* `sudo pacman -S ffmpeg`
+- **Node.js:** Recommended as a JavaScript runtime for signature solving.
+  - *Arch Linux:* `sudo pacman -S nodejs`
 
-    FFmpeg: Required for audio conversion.
+---
 
-        Arch Linux: sudo pacman -S ffmpeg
+## Installation
 
-    Node.js: Recommended as a JavaScript runtime for signature solving.
+1. **Clone the repository:**
+   ```bash
+   git clone <repo-url>
+   cd audio_downloader
+   ```
 
-        Arch Linux: sudo pacman -S nodejs
+2. **Create a Virtual Environment:**
+   ```bash
+   python -m venv venv
+   ```
 
-Installation
+3. **Activate the Environment:**
+   - **For Fish Shell:**
+     ```fish
+     source venv/bin/activate.fish
+     ```
+   - **For Bash/Zsh:**
+     ```bash
+     source venv/bin/activate
+     ```
 
-    Clone the repository:
-    Bash
+4. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-    git clone <your-repo-url>
-    cd audio_downloader
+---
 
-    Create a Virtual Environment:
-    Bash
+## Usage
 
-    python -m venv venv
+1. **Prepare your links:** Open `links.txt` and paste the YouTube URLs you want to download (one per line).
+   - *Note: For best results, use clean video links (avoid long playlist/mix parameters).*
 
-    Activate the Environment:
+2. **Run the script:**
+   ```bash
+   python src/main.py
+   ```
 
-        For Fish Shell:
-        Snippet de código
+3. **Check Output:** Your files will be saved in the `downloads/` folder.
 
-        source venv/bin/activate.fish
+---
 
-        For Bash/Zsh:
-        Bash
+## Project Structure
 
-        source venv/bin/activate
-
-    Install Dependencies:
-    Bash
-
-    pip install -r requirements.txt
-
-Usage
-
-    Prepare your links: Open links.txt and paste the YouTube URLs you want to download (one per line).
-
-        Note: For best results, use clean video links (avoid long playlist/mix parameters).
-
-    Run the script:
-    Bash
-
-    python src/main.py
-
-    Check Output: Your files will be saved in the downloads/ folder, organized by the uploader's name.
-
-Project Structure
-Plaintext
-
+```text
 .
 ├── src/
 │   ├── main.py          # Application entry point
@@ -79,11 +79,16 @@ Plaintext
 ├── downloads/           # Processed MP3 files
 ├── links.txt            # Input URLs
 └── requirements.txt     # Python dependencies
+```
 
-Troubleshooting
+---
 
-If you encounter a Signature solving failed or Requested format is not available error:
+## Troubleshooting
 
-    Ensure Node.js is installed on your system.
+If you encounter a `Signature solving failed` or `Requested format is not available` error:
 
-    The script is currently configured to use player_client=android. If a specific video fails, you can modify the downloader.py configuration to test different clients or update your local yt-dlp package via pip install -U yt-dlp.
+1. Ensure **Node.js** is installed on your system.
+2. The script is currently configured to use `player_client=android`. If a specific video fails, you can modify the `downloader.py` configuration to test different clients or update your local `yt-dlp` package via:
+   ```bash
+   pip install -U yt-dlp
+   ```
